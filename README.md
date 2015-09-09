@@ -1,6 +1,6 @@
-# ng2-play.ts
+# Angular 2 ot-modal
 
-A minimal Angular2 playground using TypeScript and SystemJS
+Based off of the popular ng2-play.ts repo.
 
 ## Install
 
