@@ -6,7 +6,11 @@ import {OtModal} from 'ot-modal';
 })
 @View({
   template: `
-    <ot-modal></ot-modal>
+    <button (click)="modal.open()">OPEN MODAL</button>
+    <ot-modal #modal>
+      <p>This is content inside the modal.</p>
+      <button (click)="modal.close()">Custom close</button>
+    </ot-modal>
   `,
   directives: [OtModal]
 })
