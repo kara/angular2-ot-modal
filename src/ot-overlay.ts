@@ -21,13 +21,17 @@ export class OtOverlay {
     this.state.onNext(this.isOpen);
   }
 
+  update(bool:boolean) {
+    this.isOpen = bool;
+    this.state.onNext(bool);
+  }
+
   open() {
-    this.isOpen = true;
-    this.state.onNext(this.isOpen);
+    this.update(true)
   }
 
   close() {
-    this.isOpen = false;
-    this.state.onNext(this.isOpen);
+    this.update(false)
   }
+
 }
