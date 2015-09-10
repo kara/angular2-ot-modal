@@ -1,5 +1,6 @@
-import {Component, View, NgIf, ViewQuery, QueryList, LifecycleEvent} from 'angular2/angular2';
+import {Component, View, NgIf} from 'angular2/angular2';
 import {OtOverlay} from "ot-overlay";
+import * as Rx from 'rx';
 
 @Component({
   selector: 'ot-modal'
@@ -10,23 +11,14 @@ import {OtOverlay} from "ot-overlay";
       <button class="right" (click)="close()">CLOSE</button>
       <ng-content></ng-content>
     </div>
-    <ot-overlay [is-open]="isOpen"></ot-overlay>
+    <ot-overlay></ot-overlay>
   `,
-  directives: [NgIf, OtOverlay],
-  lifecycle: [LifecycleEvent.onInit]
+  directives: [NgIf, OtOverlay]
 })
 export class OtModal {
   isOpen: boolean = false;
-  overlay: QueryList<OtOverlay>;
 
-  constructor(@ViewQuery(OtOverlay) overlay: QueryList<OtOverlay>) {
-    this.overlay = overlay;
-  }
-
-  onInit() {
-    this.overlay.first.state.subscribe(function(open:boolean) {
-      this.isOpen = open;
-    }.bind(this));
+  constructor() {
   }
  
   open() {
