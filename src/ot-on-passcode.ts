@@ -1,27 +1,27 @@
-import {Directive, ElementRef} from 'angular2/angular2';
+import {Directive, EventEmitter} from 'angular2/angular2';
 
 @Directive({
   selector: '[ot-on-passcode]',
+  properties: [
+    "modal: modal"
+  ],
+  events: [
+    'successCallback: authorize'
+  ],
   host: {
     '(click)': 'checkModal($event)'
-  },
-  properties: [
-    "successCallback: ot-on-passcode",
-    "modal: use-modal"
-  ]
+  }
 })
 export class OtOnPasscode {
   modal: any;
-  element: ElementRef;
-  successCallback: any;
+  successCallback: EventEmitter = new EventEmitter();
 
-  constructor(element: ElementRef) {
-    this.element = element;
+  constructor() {
   }
 
   checkModal(event: any) {
     event.preventDefault();
-    this.modal.checkModal(this.successCallback, this.element);
+    this.modal.checkModal(this.successCallback);
   }  
 
 }
